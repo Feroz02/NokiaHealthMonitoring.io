@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="A data-driven case study on Nokia Corporation's financial health monitoring and forecasting." />
+  <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+  <title>Nokia Downfall Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- and it's easy to individually load additional languages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+
+  <script>hljs.highlightAll();</script>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Initial transparent navbar */
+    .navbar {
+      transition: background-color 0.4s ease, box-shadow 0.3s ease;
+      background-color: transparent !important;
+    }
+
+    /* When scrolled */
+    .navbar.scrolled {
+      background-color: #198754 !important;
+      /* Bootstrap dark */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .hero {
+      background-image: url('assets/img/bg.jpg');
+      /* Removed \ */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 70vh;
+
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+    }
+
+    .btn-hero {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .btn-hero {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+      }
+    }
+
+    .text-justify {
+      text-align: justify;
+    }
+
+    .highlight-box {
+      background-color: #eafaf1;
+      border-left: 5px solid #198754;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      margin-bottom: 3rem;
+      ;
+    }
+
+    .section-icon {
+      color: #198754;
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+
+
+    .card {
+      border: none;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #155724;
+    }
+
+
+    .section-icon {
+      color: #198754;
+      /* Bootstrap's success green */
+      margin-right: 8px;
+    }
+
+    .highlight-box {
+      transition: all 0.3s ease-in-out !important;
+    }
+
+    .highlight-box:hover {
+      box-shadow: 0 0 20px rgba(25, 135, 84, 0.2) !important;
+    }
+
+
+    body {
+      background-color: #eafaf1;
+      color: #1e4620;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .swot-header {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border-left: 5px solid #198754;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 0.5rem;
+    }
+
+    .swot-section {
+      background-color: #f6fff9;
+      border: 1px solid #c3e6cb;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 8px rgba(25, 135, 84, 0.2);
+    }
+
+    .swot-section h4 {
+      color: #198754;
+    }
+
+    .swot-section i {
+      margin-right: 0.5rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top shadow-sm py-3" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">FHM for Nokia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="timeline.html">Timeline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="data.html">Data Visuals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analysis.html">Analysis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="credits.html">Credits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+
+      <h1>
+        <i class="fas fa-chart-line text-white me-2"></i>
+        FINANCIAL HEALTH MONITORING FOR NOKIA CORPORATION
+      </h1>
+
+      <p>
+        <i class="fas fa-database text-white me-2"></i>
+        A Data-Driven Case Study Presentation by <strong>Feroze Khan M</strong>
+      </p>
+
+      <a href="#data" class="btn btn-light btn-hero shadow">
+        <i class="fas fa-play-circle me-2"></i>
+        Start Exploring
+      </a>
+    </div>
+  </section>
+
+  <div class="container py-5" id="data">
+    <div class="container py-5">
+      <div class="swot-header text-center">
+        <h2><i class="bi bi-bar-chart-line-fill"></i> Nokia SWOT Analysis</h2>
+        <p class="lead">Analyzing Nokia's current position through Strengths, Weaknesses, Opportunities & Threats</p>
+      </div>
+
+      <!-- Strengths -->
+      <div class="swot-section">
+        <h4><i class="bi bi-hand-thumbs-up-fill"></i> Strengths</h4>
+        <ul>
+          <li>Brand Recognition and Customer Loyalty</li>
+          <li>Highly Durable Products – known for Nokia 3310</li>
+          <li>Expansion into Consumer Durables (TVs, ACs, Laptops, etc.)</li>
+          <li>Strong Global Presence in over 100 countries</li>
+          <li>Robust R&D and Manufacturing Capabilities</li>
+          <li>Strong Supplier and Distribution Network</li>
+          <li>Extensive Patent Portfolio and Licensing Power</li>
+          <li>User-Friendly Devices with High Resale Value</li>
+        </ul>
+      </div>
+
+      <!-- Weaknesses -->
+      <div class="swot-section">
+        <h4><i class="bi bi-exclamation-triangle-fill"></i> Weaknesses</h4>
+        <ul>
+          <li>Declining Market Share in Smartphones</li>
+          <li>Unsuccessful Strategic Decisions (e.g., Microsoft partnership)</li>
+          <li>Weak Presence in Major Markets like the U.S.</li>
+          <li>Heavy Dependence on 5G Infrastructure</li>
+          <li>Delayed Response to Market Trends</li>
+          <li>High Operational and Manufacturing Costs</li>
+          <li>Perceived Lack of Innovation in Recent Years</li>
+          <li>Overall Drop in Global Brand Popularity</li>
+        </ul>
+      </div>
+
+      <!-- Opportunities -->
+      <div class="swot-section">
+        <h4><i class="bi bi-lightbulb-fill"></i> Opportunities</h4>
+        <ul>
+          <li>Enhancing Brand Equity through Better Products & Marketing</li>
+          <li>Diversifying Further into Consumer Electronics</li>
+          <li>Expansion of 5G, IoT, and Cloud Services</li>
+          <li>Growth in Mobile Broadband and Smart City Infrastructure</li>
+          <li>Increased Patent Licensing Revenue Streams</li>
+          <li>Opportunities in Emerging Markets</li>
+          <li>Cloud and Data Center Development</li>
+        </ul>
+      </div>
+
+      <!-- Threats -->
+      <div class="swot-section">
+        <h4><i class="bi bi-shield-exclamation"></i> Threats</h4>
+        <ul>
+          <li>Fierce Competition from Telecom Giants like Huawei, Ericsson</li>
+          <li>Strong Smartphone Rivals – Apple, Samsung, Xiaomi</li>
+          <li>Disruption by Rapidly Evolving Technologies</li>
+          <li>Regulatory Challenges in Telecom Industry</li>
+          <li>Dependency on Suppliers for Production</li>
+          <li>Cybersecurity Risks and Data Breaches</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div class="swot-header text-center">
+      <h2 ><i class="bi bi-code-slash"></i> Financial Trend Analysis Code</h2>
+    </div>
+
+    <pre>
+      <code >
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Define the essential financial columns
+columns_to_use = [
+    'Dates', 'Revenue', 'Cost Of Goods Sold', 'Gross Profit', 'Research And Development Expenses',
+    'SG&A Expenses', 'Other Operating Income Or Expenses', 'Operating Expenses',
+    'Operating Income', 'Total Non-Operating Income/Expense', 'Pre-Tax Income', 'Income Taxes',
+    'Income After Taxes', 'Other Income', 'Income From Continuous Operations',
+    'Income From Discontinued Operations', 'Net Income', 'EBITDA', 'EBIT',
+    'Basic EPS', 'EPS - Earnings Per Share'
+]
+
+# Load the data
+file_path = "/income_statement.csv"
+df = pd.read_csv(file_path)
+
+# Ensure 'Dates' column exists
+if 'Dates' not in df.columns:
+    raise ValueError("The 'Dates' column is missing from the data.")
+
+# Convert 'Dates' to datetime format
+df['Dates'] = pd.to_datetime(df['Dates'], format='%d-%m-%Y', errors='coerce')
+
+# Filter and clean the data
+df = df[columns_to_use].dropna(thresh=int(len(columns_to_use) * 0.75))
+df = df.sort_values("Dates").reset_index(drop=True)
+
+# Check if DataFrame is empty after filtering
+if df.empty:
+    raise ValueError("The DataFrame is empty after filtering. Please check the data and filtering criteria.")
+
+# Convert financial columns to numeric
+for col in df.columns:
+    if col != "Dates":
+        df[col] = df[col].replace('[\$,B]', '', regex=True).replace(',', '', regex=True)
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Define weights for each metric
+weights = {
+    'Revenue': 3, 'Gross Profit': 2.5, 'Operating Income': 2.5, 'EBIT': 2, 'EBITDA': 2,
+    'Net Income': 3, 'EPS - Earnings Per Share': 2, 'Basic EPS': 1.5,
+    'Income After Taxes': 1.5, 'Pre-Tax Income': 1.5
+}
+
+# Metrics where a decrease is considered positive
+reverse_metrics = []
+
+# Initialize analysis
+results = {}
+weighted_score = 0
+fig, axs = plt.subplots(nrows=len(weights), figsize=(12, len(weights) * 3))
+if len(weights) == 1:
+    axs = [axs]
+
+# Perform trend analysis
+for i, (col, weight) in enumerate(weights.items()):
+    if col not in df.columns or df[col].isnull().sum() > 2:
+        continue
+
+    x = np.arange(len(df)).reshape(-1, 1)
+    y = df[col].values.reshape(-1, 1)
+
+    model = LinearRegression().fit(x, y)
+    slope = model.coef_[0][0]
+    y_pred = model.predict(x)
+    r2 = model.score(x, y)
+
+    if col in reverse_metrics:
+        trend = "Fall (good)" if slope &lt; 0 else "Rise (bad)"
+        score = weight if slope &lt; 0 else -weight
+    else:
+        trend = "Rise" if slope &gt; 0 else "Fall"
+        score = weight if slope &gt; 0 else -weight
+
+    weighted_score += score
+    results[col] = (trend, slope, weight, score, r2)
+
+    axs[i].plot(df["Dates"], y, label=f'{col} Actual', marker='o')
+    axs[i].plot(df["Dates"], y_pred, label='Trend Line', color='red')
+    axs[i].set_title(f"{col} | {trend} | Slope: {slope:.2f}, R²: {r2:.2f}, Weight: {weight}", fontsize=10)
+    axs[i].legend()
+    axs[i].grid(True)
+
+plt.tight_layout()
+plt.show()
+
+# Output textual analysis
+trend_analysis = "\n📊 Weighted Trend Analysis:\n"
+for metric, (trend, slope, weight, score, r2) in results.items():
+    trend_analysis += f" - {metric}: {trend} (slope: {slope:.2f}, R²: {r2:.2f}, weight: {weight}, score: {score})\n"
+
+verdict = "\n🧠 Final Weighted Verdict:\n"
+if weighted_score &gt; 0:
+    verdict += f"📈 Nokia is showing signs of FINANCIAL RECOVERY (weighted score: {weighted_score:.2f})"
+else:
+    verdict += f"🔻 Nokia is showing signs of FINANCIAL DECLINE (weighted score: {weighted_score:.2f})"
+
+print(trend_analysis)
+print(verdict)
+    </code></pre>
+
+    <img class="img-fluid mb-5" src="assets/img/Untitled.png" alt="">
+
+    <h3>Output:</h3>
+    <pre>
+      <code>
+      
+📊 Weighted Trend Analysis:
+- Revenue: Fall (slope: -113.86, R²: 0.31, weight: 3, score: -3)
+- Gross Profit: Fall (slope: -23.57, R²: 0.20, weight: 2.5, score: -2.5)
+- Operating Income: Rise (slope: 2.52, R²: 0.01, weight: 2.5, score: 2.5)
+- EBIT: Rise (slope: 2.52, R²: 0.01, weight: 2, score: 2)
+- EBITDA: Rise (slope: 9.78, R²: 0.11, weight: 2, score: 2)
+- Net Income: Rise (slope: 6.05, R²: 0.01, weight: 3, score: 3)
+- EPS - Earnings Per Share: Rise (slope: 0.00, R²: 0.01, weight: 2, score: 2)
+- Basic EPS: Rise (slope: 0.00, R²: 0.00, weight: 1.5, score: 1.5)
+- Income After Taxes: Rise (slope: 10.42, R²: 0.05, weight: 1.5, score: 1.5)
+- Pre-Tax Income: Rise (slope: 9.89, R²: 0.08, weight: 1.5, score: 1.5)
+
+
+🧠 Final Weighted Verdict:
+📈 Nokia is showing signs of FINANCIAL RECOVERY (weighted score: 10.50)
+    </code></pre>
+  </div>
+
+
+  <footer class="bg-success text-light pt-4 pb-2 mt-5">
+    <div class="container">
+      <div class="row">
+
+        <!-- About -->
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">About Project</h5>
+          <p class="small">
+            This timeline explores Nokia's journey from its origin as a pulp mill to a global leader in mobile
+            technology, and its strategic shifts in the digital era.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-light text-decoration-none">About</a></li>
+            <li><a href="timeline.html" class="text-light text-decoration-none">Timeline</a></li>
+            <li><a href="data.html" class="text-light text-decoration-none">Data Visuals</a></li>
+            <li><a href="analysis.html" class="text-light text-decoration-none">Analysis</a></li>
+            <li><a href="credits.html" class="text-light text-decoration-none">Credits</a></li>
+            <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Social -->
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">Connect</h5>
+          <p class="small mb-1"><i class="bi bi-person-fill me-2"></i>Feroze Khan M</p>
+          <p class="small mb-2"><i class="bi bi-phone-fill me-2"></i>+91 99408 35114</p>
+      </div>
+
+      </div>
+
+      <hr class="border-light">
+
+      <div class="text-center small">
+        © 2025 Nokia History Project | Designed by <strong>Feroze Khan M</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Optional Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+
+</html>

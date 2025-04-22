@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="A data-driven case study on Nokia Corporation's financial health monitoring and forecasting." />
+    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+    <title>Nokia Downfall Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Initial transparent navbar */
+        .navbar {
+            transition: background-color 0.4s ease, box-shadow 0.3s ease;
+            background-color: transparent !important;
+        }
+
+        /* When scrolled */
+        .navbar.scrolled {
+            background-color: #198754 !important;
+            /* Bootstrap dark */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+
+        .hero {
+            background-image: url('assets/img/bg.jpg');
+            /* Removed \ */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 75vh;
+
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+        }
+
+        .btn-hero {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            padding: 0.75rem 2rem;
+            border-radius: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-hero {
+                font-size: 1rem;
+                padding: 0.6rem 1.5rem;
+            }
+        }
+
+        .timeline-card {
+            border-left: 5px solid #198754;
+            margin-bottom: 1.5rem;
+            background: #f8f9fa;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .timeline-year {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #198754;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background-color: #eafaf1;
+            border-left: 5px solid #198754;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-bottom: 3rem;
+            ;
+        }
+
+        .section-icon {
+            color: #198754;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .timeline-img,
+        .infographic {
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #155724;
+        }
+
+        .reference-links a {
+            text-decoration: none;
+            color: #0d6efd;
+        }
+
+        .reference-links a:hover {
+            text-decoration: underline;
+        }
+
+        .section-icon {
+            color: #198754;
+            /* Bootstrap's success green */
+            margin-right: 8px;
+        }
+
+        .highlight-box {
+            transition: all 0.3s ease-in-out !important;
+        }
+
+        .highlight-box:hover {
+            box-shadow: 0 0 20px rgba(25, 135, 84, 0.2) !important;
+        }
+
+        .timeline-img,
+        .infographic {
+            object-fit: cover;
+            max-height: 220px;
+        }
+
+        .timeline-hist {
+    position: relative;
+    margin: 2rem 0;
+    padding-left: 40px;
+    border-left: 3px solid #198754;
+  }
+
+  .timeline-hist-item {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+
+  .timeline-hist-item::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: #198754;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #198754;
+  }
+
+  .timeline-hist-item .card {
+    border-left: 4px solid #198754;
+  }
+    </style>
+
+</head>
+
+<body>
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm py-3" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">FHM for Nokia</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="timeline.html">Timeline</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="data.html">Data Visuals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analysis.html">Analysis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="credits.html">Credits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+
+            <h1>
+                <i class="fas fa-chart-line text-white me-2"></i>
+                FINANCIAL HEALTH MONITORING FOR NOKIA CORPORATION
+            </h1>
+
+            <p>
+                <i class="fas fa-database text-white me-2"></i>
+                A Data-Driven Case Study Presentation by <strong>Feroze Khan M</strong>
+            </p>
+
+            <a href="#timeline" class="btn btn-light btn-hero shadow">
+                <i class="fas fa-play-circle me-2"></i>
+                Start Exploring
+            </a>
+        </div>
+    </section>
+
+
+    <div class="main" id="timeline">
+        <h3 class="text-success head"><i class="bi bi-calendar3-range-fill"></i> Nokia Financial Timeline</h3>
+        <div class="custom-timeline-container">
+            <div class="timeline-list" id="nokia-timeline-list">
+                <!-- Timeline items will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const timelineData = [
+            { year: 2009, revenue: "$57.16B", profit: "$18.50B", highlight: "Peak revenue; dominant in mobile phones.", source: "The Guardian", video: "OS6JovMKMlg", link: 'https://www.theguardian.com/business/2009/oct/15/nokia-has-first-loss-for-a-decade' },
+            { year: 2010, revenue: "$56.36B", profit: "$17.02B", highlight: "Beginning of decline due to smartphone competition.", source: "Sramana Mitra", video: "XNhhQLcaH0I", link: 'https://www.sramanamitra.com/2010/05/05/nokias-market-share-declines/' },
+            { year: 2011, revenue: "$53.84B", profit: "$15.77B", highlight: "Challenges from iPhone and Android.", source: "Microsoft News", video: "Jtn1Mz_Sz3A", link: 'https://news.microsoft.com/2011/02/10/nokia-and-microsoft-announce-plans-for-a-broad-strategic-partnership-to-build-a-new-global-mobile-ecosystem/' },
+            { year: 2012, revenue: "$38.81B", profit: "$10.79B", highlight: "Significant loss; Lumia phones underperform.", source: "Wired", video: "V9oXOeUDdl0", link: "https://www.wired.com/2012/04/nokia-us-launch-problems/" },
+            { year: 2013, revenue: "$16.88B", profit: "$7.10B", highlight: "Sold handset division to Microsoft.", source: "Microsoft News", video: "IWkqpT4tVvs", link: 'https://news.microsoft.com/2013/09/03/microsoft-to-acquire-nokias-devices-services-business-license-nokias-patents-and-mapping-services/' },
+            { year: 2014, revenue: "$16.93B", profit: "$7.50B", highlight: "Stabilization post-handset sale.", source: "	Nokia Annual Report 2014", video: "jR5a_DBYSmI", link: 'https://www.nokia.com/system/files/files/nokia_uk_ar14_full_1.pdf' },
+            { year: 2015, revenue: "$13.88B", profit: "$6.06B", highlight: "Networks remain primary business.", source: "Forbes", video: "JlNULcd1Kfo", link: 'https://www.forbes.com/sites/greatspeculations/2015/04/16/nokias-16-6-billion-acquisition-of-alcatel-lucent-explained/' },
+            { year: 2016, revenue: "$26.13B", profit: "$9.36B", highlight: "Acquisition of Alcatel-Lucent.", source: "INSEAD Knowledge", video: "v1zUfZ2Z_Ew", link: 'https://knowledge.insead.edu/strategy/strategic-decisions-caused-nokias-failure' },
+            { year: 2017, revenue: "$26.16B", profit: "$10.33B", highlight: "Steady performance in infrastructure.", source: "Nokia Financial Report 2017", video: "Q3E7PEZMjDQ", link: "https://www.nokia.com/about-us/news/releases/2018/02/01/nokia-corporation-financial-report-for-q4-and-full-year-2017/" },
+            { year: 2018, revenue: "$26.65B", profit: "$9.98B", highlight: "Challenges in 5G rollout.", source: "Nokia Financial Report 2018", video: "AvaWt2eh6iY", link: 'https://www.nokia.com/about-us/news/releases/2019/01/31/nokia-corporation-financial-report-for-q4-and-full-year-2018/' },
+            { year: 2019, revenue: "$26.11B", profit: "$9.33B", highlight: "Increased competition in telecom.", source: "	Fierce Telecom", video: "ATam5xAoU8A", link: 'https://www.fierce-network.com/telecom/nokia-off-to-a-slow-start-2019-due-to-delay-5g-rollouts' },
+            { year: 2020, revenue: "$24.96B", profit: "$9.36B", highlight: "Global economic slowdown.", source: "Nokia Financial Report 2020", video: "PMzTJASdKFE", link: 'https://www.nokia.com/system/files/2021-03/Nokia_Annual_Report_2020_English.pdf' },
+            { year: 2021, revenue: "$26.27B", profit: "$10.45B", highlight: "Recovery with increased 5G demand.", source: "Nokia News", video: "CQML68o_5l0", link: 'https://www.nokia.com/about-us/news/releases/2021/03/18/nokia-speeds-up-transformation-to-improve-profitability/' },
+            { year: 2022, revenue: "$26.25B", profit: "$10.77B", highlight: "Strong 5G infrastructure sales.", source: "Nokia Financial Report 2022", video: "xAbVfPF3QHw", link: 'https://www.nokia.com/about-us/news/releases/2023/01/26/nokia-corporation-financial-report-for-q4-and-full-year-2022/' },
+            { year: 2023, revenue: "$24.09B", profit: "$9.40B", highlight: "Reduced telecom investments.", source: "Nokia Financial Report 2023", video: "v1zUfZ2Z_Ew", link: 'https://www.nokia.com/about-us/news/releases/2024/01/25/nokia-corporation-financial-report-for-q4-and-full-year-2023/' },
+            { year: 2024, revenue: "$20.80B", profit: "$9.59B", highlight: "Cost-cutting measures implemented.", source: "Nokia Financial Report 2024", video: "Q3E7PEZMjDQ", link: 'https://www.nokia.com/about-us/news/releases/2025/01/30/nokia-corporation-financial-report-for-q4-and-full-year-2024/' }
+        ];
+
+        const list = document.getElementById("nokia-timeline-list");
+        timelineData.forEach(entry => {
+            list.innerHTML += `
+               <div class="timeline-item p-4 rounded shadow-sm bg-white">
+    <span class="timeline-circle "></span>
+    <span class="timeline-date fw-bold"> <span class="d-inline"><i class="bi bi-calendar2-event-fill me-2"></i> Year: ${entry.year}</span></span>
+    
+    <div class="row g-4 align-items-center">
+        <!-- Text content -->
+        <div class="col-md-7">
+            <h3 class="timeline-heading mb-3 fw-bold">
+            ${entry.highlight}
+            </h3>
+            <p class="timeline-description mb-3 fw-bold">
+                <strong>Revenue:</strong> ${entry.revenue}<br>
+                <strong>Profit:</strong> ${entry.profit}<br>
+            </p>
+                <a href="${entry.link}" target="_blank" class="mt-2 text-decoration-none fw-bold"><i class="fas fa-external-link-alt me-2"></i> ${entry.source}</a>
+
+        </div>
+
+        <!-- Thumbnail + Link -->
+        <div class="col-md-5 text-center">
+            <img src="https://img.youtube.com/vi/${entry.video}/0.jpg" alt="Video thumbnail for ${entry.year}" class="img-fluid w-100 rounded shadow-sm mb-3">
+            <br>
+            <a href="https://www.youtube.com/watch?v=${entry.video}" target="_blank" class="timeline-link text-decoration-none fw-semibold btn btn-sm btn-outline-success"><i class="bi bi-camera-reels-fill"></i> Watch Video</a>
+        </div>
+    </div>
+</div>
+
+            `;
+        });
+    </script>
+
+    <section id="references" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4 text-center">
+                <i class="fas fa-tv me-2 text-info"></i>
+                Recommended Videos
+            </h2>
+            <div class="row g-4">
+                <!-- Video Card 1 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://img.youtube.com/vi/_1t15PNb468/hqdefault.jpg" class="card-img-top"
+                            alt="The Rise and Fall of Nokia">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Nokia: The DEEP FALL of an Industry GIANT - FD Finance</h5>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#video1">
+                                <i class="fas fa-play me-2"></i>Watch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video Card 2 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://img.youtube.com/vi/LzR36votLos/hqdefault.jpg" class="card-img-top"
+                            alt="Nokia Evolution">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Nokia - We Were Connecting People </h5>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#video2">
+                                <i class="fas fa-play me-2"></i>Watch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video Card 3 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <img src="https://img.youtube.com/vi/FWpTcJfXhOA/hqdefault.jpg" class="card-img-top"
+                            alt="Nokia From First to Last">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"> Fall & Rise of NOKIA</h5>
+                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#video3">
+                                <i class="fas fa-play me-2"></i>Watch
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Video Popups -->
+            <div class="modal fade" id="video1" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <iframe width="100%" height="450"
+                            src="https://www.youtube.com/embed/_1t15PNb468?si=bxmqnz0Y0X5G8b3X" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="video2" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <iframe width="100%" height="450"
+                            src="https://www.youtube.com/embed/LzR36votLos?si=6Bvb-l0PSGXVAAmS" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="video3" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <iframe width="100%" height="450"
+                            src="https://www.youtube.com/embed/FWpTcJfXhOA?si=SKLxYeLpiRdbcYng" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bootstrap Modal Script -->
+    <script>
+        const modals = document.querySelectorAll('.modal');
+        modals.forEach(modal => {
+            modal.addEventListener('hidden.bs.modal', () => {
+                const iframe = modal.querySelector('iframe');
+                iframe.src = iframe.src;
+            });
+        });
+    </script>
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4 text-center">
+                <i class="fas fa-image me-2 text-info"></i>
+                Visual References
+            </h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <img src="assets/img/r2.png" class="card-img-top" style="height: 300px;" alt="Revenue Chart">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Nokia Revenue Comparison</h5>
+                            <a href="https://www.macrotrends.net/stocks/charts/NOK/nokia/revenue" target="_blank"
+                                class="btn btn-outline-success">
+                                <i class="fas fa-external-link-alt me-2"></i>View Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <img src="assets/img/r4.png" style="height: 300px;" class="card-img-top" alt="Sales Comparison">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Smartphone Sales Per Quarter</h5>
+                            <a href="https://gs.statcounter.com/vendor-market-share/mobile-tablet/worldwide/#monthly-201208-202503"
+                                target="_blank" class="btn btn-outline-success">
+                                <i class="fas fa-external-link-alt me-2"></i>View Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-success text-light pt-4 pb-2 mt-5">
+        <div class="container">
+          <div class="row">
+      
+            <!-- About -->
+            <div class="col-md-4 mb-3">
+              <h5 class="text-uppercase">About Project</h5>
+              <p class="small">
+                This timeline explores Nokia's journey from its origin as a pulp mill to a global leader in mobile technology, and its strategic shifts in the digital era.
+              </p>
+            </div>
+      
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+              <h5 class="text-uppercase">Quick Links</h5>
+              <ul class="list-unstyled">
+                <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                <li><a href="about.html" class="text-light text-decoration-none">About</a></li>
+                <li><a href="timeline.html" class="text-light text-decoration-none">Timeline</a></li>
+                <li><a href="data.html" class="text-light text-decoration-none">Data Visuals</a></li>
+                <li><a href="analysis.html" class="text-light text-decoration-none">Analysis</a></li>
+                <li><a href="credits.html" class="text-light text-decoration-none">Credits</a></li>
+                <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+              </ul>
+            </div>
+      
+            <!-- Contact & Social -->
+            <div class="col-md-4 mb-3">
+                <h5 class="text-uppercase">Connect</h5>
+                <p class="small mb-1"><i class="bi bi-person-fill me-2"></i>Feroze Khan M</p>
+                <p class="small mb-2"><i class="bi bi-phone-fill me-2"></i>+91 99408 35114</p>
+            </div>
+      
+          </div>
+      
+          <hr class="border-light">
+      
+          <div class="text-center small">
+            © 2025 Nokia History Project | Designed by <strong>Feroze Khan M</strong>
+          </div>
+        </div>
+      </footer>
+    <!-- Optional Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
+</body>
+
+</html>
