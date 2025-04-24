@@ -2,697 +2,702 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description"
-        content="A data-driven case study on Nokia Corporation's financial health monitoring and forecasting." />
-    <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
-    <title>Nokia Downfall Project</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="A data-driven case study on Nokia Corporation's financial health monitoring and forecasting." />
+  <link rel="shortcut icon" href="assets/img/icon.png" type="image/x-icon">
+  <title>Nokia Downfall Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <link rel="stylesheet" href="style.css" />
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-        /* Initial transparent navbar */
-        .navbar {
-            transition: background-color 0.4s ease, box-shadow 0.3s ease;
-            background-color: transparent !important;
-        }
+    /* Initial transparent navbar */
+    .navbar {
+      transition: background-color 0.4s ease, box-shadow 0.3s ease;
+      background-color: transparent !important;
+    }
 
-        /* When scrolled */
-        .navbar.scrolled {
-            background-color: #198754 !important;
-            /* Bootstrap dark */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-
-        .hero {
-            background-image: url('assets/img/bg.jpg');
-            /* Removed \ */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 75vh;
-
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+    /* When scrolled */
+    .navbar.scrolled {
+      background-color: #198754 !important;
+      /* Bootstrap dark */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
 
 
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 1;
-        }
+    .hero {
+      background-image: url('assets/img/bg.jpg');
+      /* Removed \ */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 75vh;
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            animation: fadeInUp 1.5s ease-in-out;
-        }
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-top: 1rem;
-        }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
 
-        .btn-hero {
-            margin-top: 2rem;
-            font-size: 1.1rem;
-            padding: 0.75rem 2rem;
-            border-radius: 30px;
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.3rem;
-            }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
 
-            .hero p {
-                font-size: 1rem;
-            }
+    .hero p {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+    }
 
-            .btn-hero {
-                font-size: 1rem;
-                padding: 0.6rem 1.5rem;
-            }
-        }
+    .btn-hero {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+      padding: 0.75rem 2rem;
+      border-radius: 30px;
+    }
 
-        .timeline-card {
-            border-left: 5px solid #198754;
-            margin-bottom: 1.5rem;
-            background: #f8f9fa;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
 
-        .timeline-card:hover {
-            transform: translateY(-4px);
-        }
+      .hero p {
+        font-size: 1rem;
+      }
 
-        .timeline-year {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #198754;
-        }
+      .btn-hero {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+      }
+    }
 
-        .text-justify {
-            text-align: justify;
-        }
+    .timeline-card {
+      border-left: 5px solid #198754;
+      margin-bottom: 1.5rem;
+      background: #f8f9fa;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
 
-        .highlight-box {
-            background-color: #eafaf1;
-            border-left: 5px solid #198754;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            margin-bottom: 3rem;
-            ;
-        }
+    .timeline-card:hover {
+      transform: translateY(-4px);
+    }
 
-        .section-icon {
-            color: #198754;
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
+    .timeline-year {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #198754;
+    }
 
-        .timeline-img,
-        .infographic {
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-            max-width: 100%;
-            height: auto;
-        }
+    .text-justify {
+      text-align: justify;
+    }
 
-        .card {
-            border: none;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s;
-        }
+    .highlight-box {
+      background-color: #eafaf1;
+      border-left: 5px solid #198754;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      margin-bottom: 3rem;
+      ;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
+    .section-icon {
+      color: #198754;
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
 
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #155724;
-        }
+    .timeline-img,
+    .infographic {
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      max-width: 100%;
+      height: auto;
+    }
 
-        .reference-links a {
-            text-decoration: none;
-            color: #0d6efd;
-        }
+    .card {
+      border: none;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s;
+    }
 
-        .reference-links a:hover {
-            text-decoration: underline;
-        }
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-        .section-icon {
-            color: #198754;
-            /* Bootstrap's success green */
-            margin-right: 8px;
-        }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #155724;
+    }
 
-        .highlight-box {
-            transition: all 0.3s ease-in-out !important;
-        }
+    .reference-links a {
+      text-decoration: none;
+      color: #0d6efd;
+    }
 
-        .highlight-box:hover {
-            box-shadow: 0 0 20px rgba(25, 135, 84, 0.2) !important;
-        }
+    .reference-links a:hover {
+      text-decoration: underline;
+    }
 
-        .timeline-img,
-        .infographic {
-            object-fit: cover;
-            max-height: 220px;
-        }
+    .section-icon {
+      color: #198754;
+      /* Bootstrap's success green */
+      margin-right: 8px;
+    }
 
-        .timeline-hist {
-    position: relative;
-    margin: 2rem 0;
-    padding-left: 40px;
-    border-left: 3px solid #198754;
-  }
+    .highlight-box {
+      transition: all 0.3s ease-in-out !important;
+    }
 
-  .timeline-hist-item {
-    margin-bottom: 2rem;
-    position: relative;
-  }
+    .highlight-box:hover {
+      box-shadow: 0 0 20px rgba(25, 135, 84, 0.2) !important;
+    }
 
-  .timeline-hist-item::before {
-    content: "";
-    position: absolute;
-    left: -11px;
-    top: 5px;
-    width: 20px;
-    height: 20px;
-    background-color: #198754;
-    border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 2px #198754;
-  }
+    .timeline-img,
+    .infographic {
+      object-fit: cover;
+      max-height: 220px;
+    }
 
-  .timeline-hist-item .card {
-    border-left: 4px solid #198754;
-  }
-    </style>
+    .timeline-hist {
+      position: relative;
+      margin: 2rem 0;
+      padding-left: 40px;
+      border-left: 3px solid #198754;
+    }
+
+    .timeline-hist-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .timeline-hist-item::before {
+      content: "";
+      position: absolute;
+      left: -11px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      background-color: #198754;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #198754;
+    }
+
+    .timeline-hist-item .card {
+      border-left: 4px solid #198754;
+    }
+  </style>
 
 </head>
 
 <body>
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top shadow-sm py-3" data-bs-theme="dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">FHM for Nokia</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top shadow-sm py-3" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">FHM for Nokia</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="timeline.html">Timeline</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="data.html">Data Visuals</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="analysis.html">Analysis</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="credits.html">Credits</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="timeline.html">Timeline</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="data.html">Data Visuals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="analysis.html">Analysis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="credits.html">Credits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="overlay"></div>
-        <div class="hero-content">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
 
-            <h1>
-                <i class="fas fa-chart-line text-white me-2"></i>
-                FINANCIAL HEALTH MONITORING FOR NOKIA CORPORATION
-            </h1>
+      <h1>
+        <i class="fas fa-chart-line text-white me-2"></i>
+        FINANCIAL HEALTH MONITORING FOR NOKIA CORPORATION
+      </h1>
 
-            <p>
-                <i class="fas fa-database text-white me-2"></i>
-                A Data-Driven Case Study Presentation by <strong>Feroze Khan M</strong>
-            </p>
+      <p>
+        <i class="fas fa-database text-white me-2"></i>
+        A Data-Driven Case Study Presentation by <strong>Feroze Khan M</strong>
+      </p>
 
-            <a href="#about" class="btn btn-light btn-hero shadow">
-                <i class="fas fa-play-circle me-2"></i>
-                Start Exploring
-            </a>
-        </div>
-    </section>
+      <a href="#about" class="btn btn-light btn-hero shadow">
+        <i class="fas fa-play-circle me-2"></i>
+        Start Exploring
+      </a>
+    </div>
+  </section>
+
+
+  <div class="container py-5">
+
+    <!-- About Nokia -->
+    <div class="highlight-box" id="about">
+      <h2><i class="bi bi-book-half section-icon"></i> About Nokia: <span class="text-success">A Legacy of
+          Innovation</span></h2>
+      <div class="d-flex align-items-center justify-content-center mb-3">
+        <img src="https://1000logos.net/wp-content/uploads/2017/03/Nokia-Logo-768x432.png" alt="Nokia Logo"
+          class="reference-img" style="width: 200px; height: auto; border-radius: 12px;" />
+      </div>
+      <p class="text-justify" style="text-align:justify; text-indent: 50px;">
+        In the modern world of business, where life is characterized by volatility and stiff competition,
+        it is very important for any company to be financially healthy if it wants to survive, grow, and
+        succeed. Financial health monitoring means systematic assessment and analysis of the firm's
+        performance and stability, and resilience using key financial metrics, ratios, and indicators.
+        Thus, this helps the business to know its strengths and realize its weaknesses in order to make
+        suitable strategies for its prosperity once again. Financial health monitoring is more than just a
+        review of financial statements; it is a complete evaluation of liquidity, solvency, profitability,
+        and operational efficiency. It allows companies to perceive early danger signals as a matter of
+        financial distress, to find enough opportunity for resources to increase financial performance
+        efficiency. Modern financial health monitoring employs advanced tools, technologies, and data
+        analytics to allow for real-time analysis of financial behavior and patterns. Such knowledge
+        will allow management teams and stakeholders and investors to act in a proactive manner and
+        with evidence-based justifications for the decisions made. This document will explore key parts
+        of, approaches to, and the advantages of financial health monitoring to provide actionable
+        insights on how organizations may operate efficient monitoring practices to bolster their
+        financial resilience and secure long-term growth.
+        In October 1998, Nokia overtook Motorola to become the best-selling mobile phone brand
+        and in December, manufactured its 100 millionth mobile phone Nokia was one of the pioneers
+        of mobile gaming due to the popularity of Snake, which came preloaded on many products. In
+        October 2008, Nokia announced the Nokia 5800 the first device to ship with the new touch
+        centric S60 5th Edition, also known as Symbian 1, the first iteration of the platform since the
+        creation of the Symbian Foundation. In November 2008, Nokia announced it would end mobile
+        phone sales in Japan because of low market share. Nokia's global mobile phone market share
+        peaked in 2008 at 38.6 percent. The same year, Nokia announced the acquisition of Trolltech
+        and its Qt software development. Qt was a central part of Nokia's strategy until 2011, and it
+        was eventually sold in 2012. In late 2009 and in 2010, the music-focused X series and
+        consumer-focused C series were introduced respectively In April 2010 Nokia introduced its
+        next flagship mobile device, the Nokia N8, which would be the first to run on Symbian.
+        However it was delayed for many months which tarnished the company's image, especially
+        after the failure of its previous flagship N97 and tougher competition from Apple and the rising
+        Google.
+        This analysis is done to assess Nokia's financial data, including but not limited to its assets,
+        liabilities, Sales. This data was collected through extensive research on financial statements
+        from reliable sources. the financial reports of Nokia ltd is downloaded from the Nokia site to
+        interpret and analyse. the financial health monitoring of the company this study will help us to
+        analyze the causes that contributed to the downfall of the Nokia Ltd which once a king in the
+        world of mobile phones
+      </p>
+      <!-- References -->
+      <h3><i class="bi bi-journal-bookmark-fill section-icon"></i> References & Further Reading</h3>
+      <ul>
+        <li><a href="https://en.wikipedia.org/wiki/History_of_Nokia" target="_blank">History of Nokia –
+            Wikipedia</a>
+        </li>
+        <li><a href="https://www.bbc.com/news/technology-23947212" target="_blank">Where Did Nokia Go Wrong?
+            –
+            BBC</a>
+        </li>
+        <li><a href="https://hbr.org/2011/02/the-real-cause-of-nokias-crisi" target="_blank">Harvard
+            Business
+            Review:
+            The Real Reason Nokia Failed</a></li>
+      </ul>
+    </div>
+
 
 
     <div class="container py-5">
+      <h2 class="text-success mb-4"><i class="bi bi-clock-history me-2"></i>Nokia: A timeline-hist of Innovation</h2>
 
-        <!-- About Nokia -->
-        <div class="highlight-box" id="about">
-            <h2><i class="bi bi-book-half section-icon"></i> About Nokia: <span class="text-success">A Legacy of
-                    Innovation</span></h2>
-            <div class="d-flex align-items-center justify-content-center mb-3">
-                <img src="https://1000logos.net/wp-content/uploads/2017/03/Nokia-Logo-768x432.png" alt="Nokia Logo"
-                    class="reference-img" style="width: 200px; height: auto; border-radius: 12px;" />
-            </div>
-            <p class="text-justify" style="text-align:justify; text-indent: 50px;">
-                In the modern world of business, where life is characterized by volatility and stiff competition,
-                it is very important for any company to be financially healthy if it wants to survive, grow, and
-                succeed. Financial health monitoring means systematic assessment and analysis of the firm's
-                performance and stability, and resilience using key financial metrics, ratios, and indicators.
-                Thus, this helps the business to know its strengths and realize its weaknesses in order to make
-                suitable strategies for its prosperity once again. Financial health monitoring is more than just a
-                review of financial statements; it is a complete evaluation of liquidity, solvency, profitability,
-                and operational efficiency. It allows companies to perceive early danger signals as a matter of
-                financial distress, to find enough opportunity for resources to increase financial performance
-                efficiency. Modern financial health monitoring employs advanced tools, technologies, and data
-                analytics to allow for real-time analysis of financial behavior and patterns. Such knowledge
-                will allow management teams and stakeholders and investors to act in a proactive manner and
-                with evidence-based justifications for the decisions made. This document will explore key parts
-                of, approaches to, and the advantages of financial health monitoring to provide actionable
-                insights on how organizations may operate efficient monitoring practices to bolster their
-                financial resilience and secure long-term growth.
-                In October 1998, Nokia overtook Motorola to become the best-selling mobile phone brand
-                and in December, manufactured its 100 millionth mobile phone Nokia was one of the pioneers
-                of mobile gaming due to the popularity of Snake, which came preloaded on many products. In
-                October 2008, Nokia announced the Nokia 5800 the first device to ship with the new touch
-                centric S60 5th Edition, also known as Symbian 1, the first iteration of the platform since the
-                creation of the Symbian Foundation. In November 2008, Nokia announced it would end mobile
-                phone sales in Japan because of low market share. Nokia's global mobile phone market share
-                peaked in 2008 at 38.6 percent. The same year, Nokia announced the acquisition of Trolltech
-                and its Qt software development. Qt was a central part of Nokia's strategy until 2011, and it
-                was eventually sold in 2012. In late 2009 and in 2010, the music-focused X series and
-                consumer-focused C series were introduced respectively In April 2010 Nokia introduced its
-                next flagship mobile device, the Nokia N8, which would be the first to run on Symbian.
-                However it was delayed for many months which tarnished the company's image, especially
-                after the failure of its previous flagship N97 and tougher competition from Apple and the rising
-                Google.
-                This analysis is done to assess Nokia's financial data, including but not limited to its assets,
-                liabilities, Sales. This data was collected through extensive research on financial statements
-                from reliable sources. the financial reports of Nokia ltd is downloaded from the Nokia site to
-                interpret and analyse. the financial health monitoring of the company this study will help us to
-                analyze the causes that contributed to the downfall of the Nokia Ltd which once a king in the
-                world of mobile phones
-            </p>
-            <!-- References -->
-            <h3><i class="bi bi-journal-bookmark-fill section-icon"></i> References & Further Reading</h3>
-            <ul>
-                <li><a href="https://en.wikipedia.org/wiki/History_of_Nokia" target="_blank">History of Nokia –
-                        Wikipedia</a>
-                </li>
-                <li><a href="https://www.bbc.com/news/technology-23947212" target="_blank">Where Did Nokia Go Wrong?
-                        –
-                        BBC</a>
-                </li>
-                <li><a href="https://hbr.org/2011/02/the-real-cause-of-nokias-crisi" target="_blank">Harvard
-                        Business
-                        Review:
-                        The Real Reason Nokia Failed</a></li>
-            </ul>
-        </div>
+      <div class="timeline-hist">
 
-
-
-        <div class="container py-5">
-            <h2 class="text-success mb-4"><i class="bi bi-clock-history me-2"></i>Nokia: A timeline-hist of Innovation</h2>
-          
-            <div class="timeline-hist">
-          
-              <!-- Origins -->
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1865 – Nokia Founded</h5>
-                    <p class="card-text">Founded as a pulp mill in Finland, marking the origins of what would become a global tech leader.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1967 – Nokia Corporation Formed</h5>
-                    <p class="card-text">Merger of a paper, cable, and rubber company to form the Nokia Corporation.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1970s–80s – Tech Exploration</h5>
-                    <p class="card-text">Development of military and civilian radio tech, leading to early mobile technologies.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Entry into Mobiles -->
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1981 – Mobile Entry</h5>
-                    <p class="card-text">Nokia begins producing car phones and early mobile communication devices.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1987 – Mobira Cityman 900</h5>
-                    <p class="card-text">Launched Nokia's first fully portable mobile phone.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1991 – First GSM Call</h5>
-                    <p class="card-text">First-ever GSM call made using a Nokia phone by Finland’s Prime Minister.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Rise to Leadership -->
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1992 – Nokia 1011</h5>
-                    <p class="card-text">Launch of the world's first commercially available GSM phone.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">1998 – #1 Mobile Maker</h5>
-                    <p class="card-text">Nokia overtakes Motorola to become the largest phone manufacturer globally.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2000 – Nokia 3310</h5>
-                    <p class="card-text">One of the best-selling and most iconic mobile phones ever made.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2001–2003 – Innovation Peak</h5>
-                    <p class="card-text">Nokia launches its first Symbian phone, first camera phone (7650), first 3G phone (6650), and Nokia 1100 – the best-selling phone of all time.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Peak & Decline -->
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2007 – Market Share Peak</h5>
-                    <p class="card-text">Nokia's global mobile market share reaches nearly 50%.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2008–2009 – Symbian & Netbook</h5>
-                    <p class="card-text">Acquires Symbian Ltd., launches the Symbian Foundation, and enters the netbook market with Nokia Booklet 3G.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Decline and Exit -->
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2011 – Microsoft Partnership</h5>
-                    <p class="card-text">Announces alliance with Microsoft to adopt Windows Phone OS.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2012 – Last Symbian Phone</h5>
-                    <p class="card-text">Launches Nokia 808 PureView, the final device running Symbian OS.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2014 – Exit from Mobile</h5>
-                    <p class="card-text">Microsoft acquires Nokia's mobile division, rebranded as Microsoft Mobile.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <!-- Comeback & Present -->
-              <div class="timeline-hist-item">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2016 – Brand Revival</h5>
-                    <p class="card-text">Nokia returns to the mobile market via a licensing deal with HMD Global.</p>
-                  </div>
-                </div>
-              </div>
-          
-              <div class="timeline-hist-item mb-0">
-                <div class="card shadow-sm">
-                  <div class="card-body">
-                    <h5 class="card-title text-success">2018–2025 – Network Era</h5>
-                    <p class="card-text">Focuses on telecommunications infrastructure, 5G networks, and licensing. Brand continues through HMD's devices.</p>
-                  </div>
-                </div>
-              </div>
-          
+        <!-- Origins -->
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1865 – Nokia Founded</h5>
+              <p class="card-text">Founded as a pulp mill in Finland, marking the origins of what would become a global
+                tech leader.</p>
             </div>
           </div>
-          
-        <!-- Lessons Learned -->
-        <div class="mb-5">
-            <h3><i class="bi bi-lightbulb-fill section-icon"></i> Key Business Lessons from Nokia</h3>
-            <div class="row g-4 mt-3">
-                <div class="col-md-6 col-lg-3">
-                    <div class="card p-2 bg-white border border-3 border-success "
-                        style="height: 200px; text-align: justify;">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-arrow-repeat"></i> Adaptation to Market Shifts</h5>
-                            <p>Nokia thrived through innovation but lagged in the smartphone transition, especially with
-                                the rise of
-                                app ecosystems.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card p-2 bg-white border border-3 border-success "
-                        style="height: 200px; text-align: justify;">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-cpu"></i> Software & Ecosystem</h5>
-                            <p>Strong hardware couldn’t offset its weak software and developer engagement. Android and
-                                iOS took the
-                                lead.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card p-2 bg-white border border-3 border-success "
-                        style="height: 200px; text-align: justify;">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-people"></i> Strategic Partnerships</h5>
-                            <p>The Microsoft partnership lacked long-term vision and failed to regain lost market
-                                traction.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card p-2 bg-white border border-3 border-success "
-                        style="height: 200px; text-align: justify;">
-                        <div class="card-body">
-                            <h5 class="card-title"><i class="bi bi-award"></i> Brand Identity Evolution</h5>
-                            <p>Nokia’s legacy brand was iconic, but it struggled to stay relevant amid changing user
-                                expectations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!-- Current Status -->
-        <div class="row g-4 px-2 py-4">
-            <!-- Nokia Today -->
-            <div class="col-md-4">
-                <div class="highlight-box h-100 p-4 bg-white shadow rounded">
-                    <h3 class="mb-3">
-                        <i class="bi bi-graph-up-arrow section-icon"></i> Nokia Today: Repositioned and Resilient
-                    </h3>
-                    <p>
-                        As of April 18, 2025, Nokia’s stock (<code>NYSE: NOK</code>) trades at <strong>$5.11</strong>.
-                        The company has pivoted to:
-                    </p>
-                    <ul class="mb-3">
-                        <li>5G infrastructure development</li>
-                        <li>Telecom network solutions</li>
-                        <li>Licensing technologies and patents</li>
-                    </ul>
-                    <a class="btn btn-sm btn-outline-success mb-3" target="_blank"
-                        href="https://www.telecomreviewasia.com/news/network-news/3063-nokia-partners-with-balitower-for-5g-network-solutions/">
-                        Know more
-                    </a>
-                    <img src="assets/img/Nokia_Partners_With_Balitower_For_5G_Network_Solutions.jpg"
-                        alt="5G Infrastructure" class="img-fluid rounded timeline-img mt-2">
-                </div>
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1967 – Nokia Corporation Formed</h5>
+              <p class="card-text">Merger of a paper, cable, and rubber company to form the Nokia Corporation.</p>
             </div>
-
-            <!-- Evolution Timeline -->
-            <div class="col-md-4">
-                <div class="highlight-box h-100 p-4 bg-white shadow rounded">
-                    <h3 class="mb-3">
-                        <i class="bi bi-clock-history section-icon"></i> Evolution of Nokia Phones (1990s–2010s)
-                    </h3>
-                    <p>A visual retrospective of Nokia’s iconic mobile devices over the decades.</p>
-                    <a href="https://en.wikipedia.org/wiki/List_of_Nokia_products" target="_blank"
-                        class="fw-semibold btn btn-sm btn-outline-success my-2">Explore Nokia Product List</a>
-
-                    <div class="ratio ratio-16x9 my-3">
-                        <iframe src="https://www.youtube.com/embed/Nd5syApdFXY?si=HbfEJnoHq7F5ncnx"
-                            title="Nokia Evolution Timeline" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Revenue Chart -->
-            <div class="col-md-4">
-                <div class="highlight-box h-100 p-4 bg-white shadow rounded">
-                    <h3 class="mb-3">
-                        <i class="bi bi-bar-chart-fill section-icon"></i> Revenue vs. Market Share (2012–2025)
-                    </h3>
-                    <p>This chart illustrates Nokia's rise and fall in revenue and market share.</p>
-                    <img src="assets/img/r4.png" alt="Revenue vs Market Share"
-                        class="img-fluid rounded infographic mt-3">
-                </div>
-            </div>
+          </div>
         </div>
 
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1970s–80s – Tech Exploration</h5>
+              <p class="card-text">Development of military and civilian radio tech, leading to early mobile
+                technologies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Entry into Mobiles -->
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1981 – Mobile Entry</h5>
+              <p class="card-text">Nokia begins producing car phones and early mobile communication devices.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1987 – Mobira Cityman 900</h5>
+              <p class="card-text">Launched Nokia's first fully portable mobile phone.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1991 – First GSM Call</h5>
+              <p class="card-text">First-ever GSM call made using a Nokia phone by Finland’s Prime Minister.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rise to Leadership -->
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1992 – Nokia 1011</h5>
+              <p class="card-text">Launch of the world's first commercially available GSM phone.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">1998 – #1 Mobile Maker</h5>
+              <p class="card-text">Nokia overtakes Motorola to become the largest phone manufacturer globally.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2000 – Nokia 3310</h5>
+              <p class="card-text">One of the best-selling and most iconic mobile phones ever made.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2001–2003 – Innovation Peak</h5>
+              <p class="card-text">Nokia launches its first Symbian phone, first camera phone (7650), first 3G phone
+                (6650), and Nokia 1100 – the best-selling phone of all time.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Peak & Decline -->
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2007 – Market Share Peak</h5>
+              <p class="card-text">Nokia's global mobile market share reaches nearly 50%.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2008–2009 – Symbian & Netbook</h5>
+              <p class="card-text">Acquires Symbian Ltd., launches the Symbian Foundation, and enters the netbook market
+                with Nokia Booklet 3G.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decline and Exit -->
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2011 – Microsoft Partnership</h5>
+              <p class="card-text">Announces alliance with Microsoft to adopt Windows Phone OS.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2012 – Last Symbian Phone</h5>
+              <p class="card-text">Launches Nokia 808 PureView, the final device running Symbian OS.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2014 – Exit from Mobile</h5>
+              <p class="card-text">Microsoft acquires Nokia's mobile division, rebranded as Microsoft Mobile.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comeback & Present -->
+        <div class="timeline-hist-item">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2016 – Brand Revival</h5>
+              <p class="card-text">Nokia returns to the mobile market via a licensing deal with HMD Global.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-hist-item mb-0">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-success">2018–2025 – Network Era</h5>
+              <p class="card-text">Focuses on telecommunications infrastructure, 5G networks, and licensing. Brand
+                continues through HMD's devices.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <footer class="bg-success text-light pt-4 pb-2 mt-5">
-        <div class="container">
-          <div class="row">
-      
-            <!-- About -->
-            <div class="col-md-4 mb-3">
-              <h5 class="text-uppercase">About Project</h5>
-              <p class="small">
-                This timeline explores Nokia's journey from its origin as a pulp mill to a global leader in mobile technology, and its strategic shifts in the digital era.
-              </p>
+    <!-- Lessons Learned -->
+    <div class="mb-5">
+      <h3><i class="bi bi-lightbulb-fill section-icon"></i> Key Business Lessons from Nokia</h3>
+      <div class="row g-4 mt-3">
+        <div class="col-md-6 col-lg-3">
+          <div class="card p-2 bg-white border border-3 border-success " style="height: 200px; text-align: justify;">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-arrow-repeat"></i> Adaptation to Market Shifts</h5>
+              <p>Nokia thrived through innovation but lagged in the smartphone transition, especially with
+                the rise of
+                app ecosystems.</p>
             </div>
-      
-            <!-- Quick Links -->
-            <div class="col-md-4 mb-3">
-              <h5 class="text-uppercase">Quick Links</h5>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
-                <li><a href="about.html" class="text-light text-decoration-none">About</a></li>
-                <li><a href="timeline.html" class="text-light text-decoration-none">Timeline</a></li>
-                <li><a href="data.html" class="text-light text-decoration-none">Data Visuals</a></li>
-                <li><a href="analysis.html" class="text-light text-decoration-none">Analysis</a></li>
-                <li><a href="credits.html" class="text-light text-decoration-none">Credits</a></li>
-                <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
-              </ul>
-            </div>
-      
-            <!-- Contact & Social -->
-            <div class="col-md-4 mb-3">
-                <h5 class="text-uppercase">Connect</h5>
-                <p class="small mb-1"><i class="bi bi-person-fill me-2"></i>Feroze Khan M</p>
-                <p class="small mb-2"><i class="bi bi-phone-fill me-2"></i>+91 99408 35114</p>
-            </div>
-      
-          </div>
-      
-          <hr class="border-light">
-      
-          <div class="text-center small">
-            © 2025 Nokia History Project | Designed by <strong>Feroze Khan M</strong>
           </div>
         </div>
-      </footer>
+        <div class="col-md-6 col-lg-3">
+          <div class="card p-2 bg-white border border-3 border-success " style="height: 200px; text-align: justify;">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-cpu"></i> Software & Ecosystem</h5>
+              <p>Strong hardware couldn’t offset its weak software and developer engagement. Android and
+                iOS took the
+                lead.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card p-2 bg-white border border-3 border-success " style="height: 200px; text-align: justify;">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-people"></i> Strategic Partnerships</h5>
+              <p>The Microsoft partnership lacked long-term vision and failed to regain lost market
+                traction.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card p-2 bg-white border border-3 border-success " style="height: 200px; text-align: justify;">
+            <div class="card-body">
+              <h5 class="card-title"><i class="bi bi-award"></i> Brand Identity Evolution</h5>
+              <p>Nokia’s legacy brand was iconic, but it struggled to stay relevant amid changing user
+                expectations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- Optional Script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        window.addEventListener("scroll", function () {
-            const navbar = document.querySelector(".navbar");
-            if (window.scrollY > 50) {
-                navbar.classList.add("scrolled");
-            } else {
-                navbar.classList.remove("scrolled");
-            }
-        });
-    </script>
+    <!-- Current Status -->
+    <div class="row g-4 px-2 py-4">
+      <!-- Nokia Today -->
+      <div class="col-md-4">
+        <div class="highlight-box h-100 p-4 bg-white shadow rounded">
+          <h3 class="mb-3">
+            <i class="bi bi-graph-up-arrow section-icon"></i> Nokia Today: Repositioned and Resilient
+          </h3>
+          <p>
+            As of April 18, 2025, Nokia’s stock (<code>NYSE: NOK</code>) trades at <strong>$5.11</strong>.
+            The company has pivoted to:
+          </p>
+          <ul class="mb-3">
+            <li>5G infrastructure development</li>
+            <li>Telecom network solutions</li>
+            <li>Licensing technologies and patents</li>
+          </ul>
+          <a class="btn btn-sm btn-outline-success mb-3" target="_blank"
+            href="https://www.telecomreviewasia.com/news/network-news/3063-nokia-partners-with-balitower-for-5g-network-solutions/">
+            Know more
+          </a>
+          <img src="assets/img/Nokia_Partners_With_Balitower_For_5G_Network_Solutions.jpg" alt="5G Infrastructure"
+            class="img-fluid rounded timeline-img mt-2">
+        </div>
+      </div>
+
+      <!-- Evolution Timeline -->
+      <div class="col-md-4">
+        <div class="highlight-box h-100 p-4 bg-white shadow rounded">
+          <h3 class="mb-3">
+            <i class="bi bi-clock-history section-icon"></i> Evolution of Nokia Phones (1990s–2010s)
+          </h3>
+          <p>A visual retrospective of Nokia’s iconic mobile devices over the decades.</p>
+          <a href="https://en.wikipedia.org/wiki/List_of_Nokia_products" target="_blank"
+            class="fw-semibold btn btn-sm btn-outline-success my-2">Explore Nokia Product List</a>
+
+          <div class="ratio ratio-16x9 my-3">
+            <iframe src="https://www.youtube.com/embed/Nd5syApdFXY?si=HbfEJnoHq7F5ncnx" title="Nokia Evolution Timeline"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenue Chart -->
+      <div class="col-md-4">
+        <div class="highlight-box h-100 p-4 bg-white shadow rounded">
+          <h3 class="mb-3">
+            <i class="bi bi-bar-chart-fill section-icon"></i> Revenue vs. Market Share (2012–2025)
+          </h3>
+          <p>This chart illustrates Nokia's rise and fall in revenue and market share.</p>
+          <a href="https://gs.statcounter.com/vendor-market-share/mobile-tablet/worldwide/#monthly-201208-202503"
+            target="_blank" class="fw-semibold btn btn-sm btn-outline-success my-2">
+          </a>
+
+          <img src="assets/img/r4.png" alt="Revenue vs Market Share" class="img-fluid rounded infographic mt-3">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="bg-success text-light pt-4 pb-2 mt-5">
+    <div class="container">
+      <div class="row">
+
+        <!-- About -->
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">About Project</h5>
+          <p class="small">
+            This timeline explores Nokia's journey from its origin as a pulp mill to a global leader in mobile
+            technology, and its strategic shifts in the digital era.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+            <li><a href="about.html" class="text-light text-decoration-none">About</a></li>
+            <li><a href="timeline.html" class="text-light text-decoration-none">Timeline</a></li>
+            <li><a href="data.html" class="text-light text-decoration-none">Data Visuals</a></li>
+            <li><a href="analysis.html" class="text-light text-decoration-none">Analysis</a></li>
+            <li><a href="credits.html" class="text-light text-decoration-none">Credits</a></li>
+            <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Social -->
+        <div class="col-md-4 mb-3">
+          <h5 class="text-uppercase">Connect</h5>
+          <p class="small mb-1"><i class="bi bi-person-fill me-2"></i>Feroze Khan M</p>
+          <p class="small mb-2"><i class="bi bi-phone-fill me-2"></i>+91 99408 35114</p>
+        </div>
+
+      </div>
+
+      <hr class="border-light">
+
+      <div class="text-center small">
+        © 2025 Nokia History Project | Designed by <strong>Feroze Khan M</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Optional Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    window.addEventListener("scroll", function () {
+      const navbar = document.querySelector(".navbar");
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
 </body>
 
 </html>

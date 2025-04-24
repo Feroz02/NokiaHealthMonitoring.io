@@ -18,6 +18,11 @@
   <!-- and it's easy to individually load additional languages -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
 
+  <!-- Include DataTables CSS for Buttons -->
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <link href="assets/DataTables/datatables.css" rel="stylesheet">
+
+
   <script>hljs.highlightAll();</script>
   <link rel="stylesheet" href="style.css" />
 
@@ -208,6 +213,134 @@
     ul {
       padding-left: 1.5rem;
     }
+
+    .table-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    margin-top: 20px;
+  }
+
+  /* Styling the table */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* Header with a black shade */
+  .table thead th {
+    background-color: #198754 !important;
+    /* Solid black background */
+    color: #ffffff;
+    /* White text for contrast */
+    padding: 16px 10px;
+    text-align: center;
+    font-weight: 600;
+    border: none;
+  }
+
+  th::before,
+  th::after {
+    color: #ffffff !important;
+  }
+
+  /* Body rows with white background */
+  .table tbody tr {
+    background-color: #ffffff;
+    /* Pure white for rows */
+  }
+
+  /* Alternating row shades for subtle distinction */
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Very light gray for even rows */
+  }
+
+  /* Styling for table cells */
+  .table th,
+  .table td {
+    padding: 12px;
+    font-size: 15px;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  th.focus,
+  td.focus {
+    outline: none !important;
+  }
+
+  /* Row hover effect */
+  .table tbody tr:hover,
+  .table tbody tr:active {
+    background-color: #e6e6e6;
+    cursor: pointer;
+  }
+
+  .page-link {
+    color: #198754;
+  }
+
+  .page-item.active .page-link {
+    background: #198754 !important;
+    border: #198754 !important;
+  }
+
+  .page-item.active:focus .page-link:focus {
+    outline: none !important;
+    border: none !important;
+  }
+
+  /* Action button styling */
+  .action-buttons a {
+    font-size: 14px;
+    padding: 6px 10px;
+    color: #333;
+    background-color: #e1e1e1;
+    border-radius: 6px;
+    margin-right: 5px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .action-buttons a:hover,
+  .action-buttons a:active {
+    background-color: #c7c7c7;
+    color: #198754;
+  }
+
+  /* DataTables button customizations */
+  .dt-buttons .btn {
+    background-color: #198754;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+    border-color: #198754;
+  }
+
+
+  .dt-buttons .btn:hover,
+  .dt-buttons .btn:active {
+    color: #198754;
+    background-color: #fff;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 576px) {
+
+    .dataTables_filter input,
+    .dataTables_length select {
+      width: 100% !important;
+      margin-bottom: 10px;
+    }
+  }
   </style>
 
 </head>
@@ -340,7 +473,7 @@
 
 
     <div class="swot-header text-center">
-      <h2 ><i class="bi bi-code-slash"></i> Financial Trend Analysis Code</h2>
+      <h2><i class="bi bi-code-slash"></i> Financial Trend Analysis Code</h2>
     </div>
 
     <pre>
@@ -471,7 +604,131 @@ print(verdict)
 🧠 Final Weighted Verdict:
 📈 Nokia is showing signs of FINANCIAL RECOVERY (weighted score: 10.50)
     </code></pre>
+
+    <h2 class="text-success my-3">CSV Data Set 1 Table</h2>
+    <div class="table-responsive">
+      <table id="csv-table1" class="table table-bordered table-striped table-success" style="width:100%"></table>
+    </div>
+
+    <br>
+
+    <h2 class="text-success my-3">CSV Data Set 2 Table</h2>
+    <div class="table-responsive">
+      <table id="csv-table2" class="table table-bordered table-striped table-success" style="width:100%"></table>
+    </div>
   </div>
+
+  <!-- Include PapaParse -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <script src="assets/DataTables/datatables.js"></script>
+
+  <script>
+    const csvConfigs = [
+      { path: 'assets/dataset/nokia dataset 1.csv', tableId: 'csv-table1' },
+      { path: 'assets/dataset/nokia dataset 2.csv', tableId: 'csv-table2' }
+    ];
+
+      // Function to parse date in DD-MM-YYYY format to Date object
+  function parseDate(dateStr) {
+    const [day, month, year] = dateStr.split('-');
+
+    return new Date(year, month - 1, day); // Month is 0-based in Date
+  }
+
+    csvConfigs.forEach(config => {
+      fetch(config.path)
+        .then(response => response.text())
+        .then(data => {
+          const parsed = Papa.parse(data, {
+            header: false,
+            skipEmptyLines: true
+          });
+
+          const csvData = parsed.data;
+          const headers = csvData[0];
+          const rows = csvData.slice(1);
+
+          rows.sort((a, b) => parseDate(a[0]) - parseDate(b[0]));
+          
+          // Build columns config for DataTable
+          const columns = headers.map(header => ({
+            title: header.trim()
+          }));
+
+          // Initialize DataTable with export buttons and success theme
+          $(`#${config.tableId}`).DataTable({
+            dom: "<'row my-2 d-flex justify-content-between'<'col-md-5'><'col-md-4 me-5 d-flex justify-content-end' B>>" +
+              "<'row my-3 pt-4 pb-3'<'col-md-4 col-2 me-5 me-md-0'l><'col-md-8 col-9 'f>>" +
+              "<'row'<'col-md-12'tr>>" +
+              "<'row pt-2 pb-5 mx-2'<'col-md-4 mt-5'i><'col-md-4 ms-5'p>>",
+
+            data: rows,
+            columns: columns,
+            pageLength: 10,
+            pagingType: 'full_numbers',
+            scrollCollapse: true,
+            language: {
+              searchPlaceholder: "Search table...",
+              search: ""
+            },
+            buttons: [
+              {
+                // This is the place where your Django block will be included
+                extend: 'collection',
+                text: 'Downloads',
+                buttons: [
+                  {
+                    extend: 'copy', text: "<u>C</u>opy", footer: true, exportOptions: { columns: ':not(:last-child)', footer: true, modifier: { page: 'all' } }, key: {
+                      metaKey: true,
+                      key: 'c'
+                    },
+                  },
+                  {
+                    extend: 'print', text: "<u>P</u>rint", footer: true, exportOptions: { columns: ':not(:last-child)', footer: true, modifier: { page: 'all' } }, key: {
+                      metaKey: true,
+                      altKey: true,
+                      key: 'p'
+                    },
+                  },
+                  {
+                    extend: 'excel', text: "<u>E</u>xcel", footer: true, exportOptions: { columns: ':not(:last-child)', footer: true, modifier: { page: 'all' } }, key: {
+                      metaKey: true,
+                      altKey: true,
+                      key: 'e'
+                    },
+                  },
+                  {
+                    extend: 'csv', text: "<u>C</u>SV", footer: true, exportOptions: { columns: ':not(:last-child)', footer: true, modifier: { page: 'all' } }, key: {
+                      metaKey: true,
+                      altKey: true,
+                      key: 'c'
+                    }
+                  },
+                  {
+                    extend: 'pdf', text: "<u>P</u>DF",
+                    footer: true, exportOptions: { columns: ':not(:last-child)', footer: true, modifier: { page: 'all' } }, key: {
+                      metaKey: true,
+                      altKey: true,
+                      key: 'p'
+                    }
+                  }
+                  // You can add other options here as needed
+                ]
+              }
+            ],
+            initComplete: function () {
+              // Apply success theme to buttons
+              $('.dt-button').addClass('btn btn-success text-white');
+            }
+          });
+        })
+        .catch(error => {
+          document.getElementById(config.tableId).innerHTML = `<p class="text-danger">Error loading ${config.path}: ${error}</p>`;
+        });
+    });
+  </script>
+
 
 
   <footer class="bg-success text-light pt-4 pb-2 mt-5">
@@ -506,7 +763,7 @@ print(verdict)
           <h5 class="text-uppercase">Connect</h5>
           <p class="small mb-1"><i class="bi bi-person-fill me-2"></i>Feroze Khan M</p>
           <p class="small mb-2"><i class="bi bi-phone-fill me-2"></i>+91 99408 35114</p>
-      </div>
+        </div>
 
       </div>
 
@@ -520,6 +777,7 @@ print(verdict)
 
   <!-- Optional Script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
     window.addEventListener("scroll", function () {
       const navbar = document.querySelector(".navbar");
