@@ -110,6 +110,13 @@
     }
 
     @media (max-width: 768px) {
+      .navbar {
+        background-color: #198754 !important;
+        /* Bootstrap dark */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        position: relative !important;
+      }
+
       .hero h1 {
         font-size: 2.3rem;
       }
@@ -215,132 +222,132 @@
     }
 
     .table-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    /* Light gray background */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* Soft shadow */
-    margin-top: 20px;
-  }
-
-  /* Styling the table */
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;
-  }
-
-  /* Header with a black shade */
-  .table thead th {
-    background-color: #198754 !important;
-    /* Solid black background */
-    color: #ffffff;
-    /* White text for contrast */
-    padding: 16px 10px;
-    text-align: center;
-    font-weight: 600;
-    border: none;
-  }
-
-  th::before,
-  th::after {
-    color: #ffffff !important;
-  }
-
-  /* Body rows with white background */
-  .table tbody tr {
-    background-color: #ffffff;
-    /* Pure white for rows */
-  }
-
-  /* Alternating row shades for subtle distinction */
-  .table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-    /* Very light gray for even rows */
-  }
-
-  /* Styling for table cells */
-  .table th,
-  .table td {
-    padding: 12px;
-    font-size: 15px;
-    color: #333;
-    transition: background-color 0.3s ease;
-  }
-
-  th.focus,
-  td.focus {
-    outline: none !important;
-  }
-
-  /* Row hover effect */
-  .table tbody tr:hover,
-  .table tbody tr:active {
-    background-color: #e6e6e6;
-    cursor: pointer;
-  }
-
-  .page-link {
-    color: #198754;
-  }
-
-  .page-item.active .page-link {
-    background: #198754 !important;
-    border: #198754 !important;
-  }
-
-  .page-item.active:focus .page-link:focus {
-    outline: none !important;
-    border: none !important;
-  }
-
-  /* Action button styling */
-  .action-buttons a {
-    font-size: 14px;
-    padding: 6px 10px;
-    color: #333;
-    background-color: #e1e1e1;
-    border-radius: 6px;
-    margin-right: 5px;
-    transition: all 0.2s ease;
-    text-decoration: none;
-  }
-
-  .action-buttons a:hover,
-  .action-buttons a:active {
-    background-color: #c7c7c7;
-    color: #198754;
-  }
-
-  /* DataTables button customizations */
-  .dt-buttons .btn {
-    background-color: #198754;
-    color: #ffffff;
-    border-radius: 5px;
-    padding: 8px 12px;
-    margin: 5px;
-    transition: background-color 0.3s ease;
-    border-color: #198754;
-  }
-
-
-  .dt-buttons .btn:hover,
-  .dt-buttons .btn:active {
-    color: #198754;
-    background-color: #fff;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 576px) {
-
-    .dataTables_filter input,
-    .dataTables_length select {
-      width: 100% !important;
-      margin-bottom: 10px;
+      background-color: rgba(255, 255, 255, 0.9);
+      /* Light gray background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      /* Soft shadow */
+      margin-top: 20px;
     }
-  }
+
+    /* Styling the table */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* Header with a black shade */
+    .table thead th {
+      background-color: #198754 !important;
+      /* Solid black background */
+      color: #ffffff;
+      /* White text for contrast */
+      padding: 16px 10px;
+      text-align: center;
+      font-weight: 600;
+      border: none;
+    }
+
+    th::before,
+    th::after {
+      color: #ffffff !important;
+    }
+
+    /* Body rows with white background */
+    .table tbody tr {
+      background-color: #ffffff;
+      /* Pure white for rows */
+    }
+
+    /* Alternating row shades for subtle distinction */
+    .table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+      /* Very light gray for even rows */
+    }
+
+    /* Styling for table cells */
+    .table th,
+    .table td {
+      padding: 12px;
+      font-size: 15px;
+      color: #333;
+      transition: background-color 0.3s ease;
+    }
+
+    th.focus,
+    td.focus {
+      outline: none !important;
+    }
+
+    /* Row hover effect */
+    .table tbody tr:hover,
+    .table tbody tr:active {
+      background-color: #e6e6e6;
+      cursor: pointer;
+    }
+
+    .page-link {
+      color: #198754;
+    }
+
+    .page-item.active .page-link {
+      background: #198754 !important;
+      border: #198754 !important;
+    }
+
+    .page-item.active:focus .page-link:focus {
+      outline: none !important;
+      border: none !important;
+    }
+
+    /* Action button styling */
+    .action-buttons a {
+      font-size: 14px;
+      padding: 6px 10px;
+      color: #333;
+      background-color: #e1e1e1;
+      border-radius: 6px;
+      margin-right: 5px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .action-buttons a:hover,
+    .action-buttons a:active {
+      background-color: #c7c7c7;
+      color: #198754;
+    }
+
+    /* DataTables button customizations */
+    .dt-buttons .btn {
+      background-color: #198754;
+      color: #ffffff;
+      border-radius: 5px;
+      padding: 8px 12px;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+      border-color: #198754;
+    }
+
+
+    .dt-buttons .btn:hover,
+    .dt-buttons .btn:active {
+      color: #198754;
+      background-color: #fff;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+
+      .dataTables_filter input,
+      .dataTables_length select {
+        width: 100% !important;
+        margin-bottom: 10px;
+      }
+    }
   </style>
 
 </head>
@@ -629,12 +636,12 @@ print(verdict)
       { path: 'assets/dataset/nokia dataset 2.csv', tableId: 'csv-table2' }
     ];
 
-      // Function to parse date in DD-MM-YYYY format to Date object
-  function parseDate(dateStr) {
-    const [day, month, year] = dateStr.split('-');
+    // Function to parse date in DD-MM-YYYY format to Date object
+    function parseDate(dateStr) {
+      const [day, month, year] = dateStr.split('-');
 
-    return new Date(year, month - 1, day); // Month is 0-based in Date
-  }
+      return new Date(year, month - 1, day); // Month is 0-based in Date
+    }
 
     csvConfigs.forEach(config => {
       fetch(config.path)
@@ -650,7 +657,7 @@ print(verdict)
           const rows = csvData.slice(1);
 
           rows.sort((a, b) => parseDate(a[0]) - parseDate(b[0]));
-          
+
           // Build columns config for DataTable
           const columns = headers.map(header => ({
             title: header.trim()

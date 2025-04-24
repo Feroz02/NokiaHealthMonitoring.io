@@ -99,6 +99,13 @@
         }
 
         @media (max-width: 768px) {
+            .navbar {
+                background-color: #198754 !important;
+                /* Bootstrap dark */
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                position: relative !important;
+            }
+
             .hero h1 {
                 font-size: 2.3rem;
             }
@@ -442,8 +449,8 @@
                         <div class="card border-success">
                             <div class="card-header bg-success text-white"><i class="bi bi-phone-fill"></i>
                                 Operating System and Ecosystem</div>
-                                <div class="card-body" style="min-height: 200px; max-height: 100%; overflow-y: auto;">
-                                    <p><strong>Nokia:</strong> Managed 57 fragmented versions of Symbian OS, later adopted
+                            <div class="card-body" style="min-height: 200px; max-height: 100%; overflow-y: auto;">
+                                <p><strong>Nokia:</strong> Managed 57 fragmented versions of Symbian OS, later adopted
                                     Windows
                                     Phone but
                                     too late.</p>
@@ -459,8 +466,8 @@
                         <div class="card border-success">
                             <div class="card-header bg-success text-white"><i class="bi bi-lightbulb-fill "></i>
                                 Innovation and Product Strategy</div>
-                                <div class="card-body" style="min-height: 200px; max-height: 100%; overflow-y: auto;">
-                                    <p><strong>Nokia:</strong> Focused on hardware, delayed touchscreen adoption</p>
+                            <div class="card-body" style="min-height: 200px; max-height: 100%; overflow-y: auto;">
+                                <p><strong>Nokia:</strong> Focused on hardware, delayed touchscreen adoption</p>
                                 <p>
                                     <strong>Apple:</strong> Introduced capacitive touch, set new smartphone standards.
                                 </p>
@@ -720,40 +727,56 @@
                 <div class="container my-5">
                     <h3 class="mb-4 text-success"><i class="bi bi-link-45deg"></i> References</h3>
                     <ul class="list-group ">
-                      <li class="list-group-item">
-                        <i class="bi bi-chat-dots-fill text-success"></i>
-                        <a href="https://r2.community.samsung.com/t5/Galaxy-S/S24-Ultra-Overpriced/td-p/15489791" target="_blank" class="text-decoration-none text-success">Samsung Community Forum – S24 Ultra Overpriced Discussion</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-journal-text text-success"></i>
-                        <a href="https://www.91mobiles.com/hub/iphone-16-pro-max-bom-production-cut/" target="_blank" class="text-decoration-none text-success">91Mobiles – iPhone 16 Pro Max BOM and Production Cut</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-globe text-success"></i>
-                        <a href="https://www.business-standard.com/technology/tech-news/iqoo-z10-with-7300-mah-battery-goes-on-sale-in-india-price-offers-more-125041600378_1.html" target="_blank" class="text-decoration-none text-success">Business Standard – iQOO Z10 Launch & Battery Specs</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-phone-fill text-success"></i>
-                        <a href="https://www.gadgets360.com/redmi-a4-5g-price-in-india-128893" target="_blank" class="text-decoration-none text-success">Gadgets360 – Redmi A4 5G Price & Specs in India</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-bar-chart-line-fill text-success"></i>
-                        <a href="https://www.sammobile.com/news/galaxy-s24-ultra-world-best-selling-android-phone-q1-2024/" target="_blank" class="text-decoration-none text-success">SamMobile – Galaxy S24 Ultra Sales Report (Q1 2024)</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-newspaper text-success"></i>
-                        <a href="https://www.reuters.com/technology/apple-loses-top-phonemaker-spot-samsung-iphone-shipments-drop-idc-says-2024-04-15/" target="_blank" class="text-decoration-none text-success">Reuters – Apple Loses Top Phonemaker Spot to Samsung</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-phone text-success"></i>
-                        <a href="https://www.gadgets360.com/iqoo-z10-price-in-india-131595?utm_source=chatgpt.com" target="_blank" class="text-decoration-none text-success">Gadgets360 – iQOO Z10 Pricing in India</a>
-                      </li>
-                      <li class="list-group-item">
-                        <i class="bi bi-graph-up-arrow text-success"></i>
-                        <a href="https://www.phonearena.com/news/galaxy-s24-ultra-s23-ultra-eu-sales_id159739?utm_source=chatgpt.com" target="_blank" class="text-decoration-none text-success">PhoneArena – Galaxy S24 vs S23 Ultra Sales in EU</a>
-                      </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-chat-dots-fill text-success"></i>
+                            <a href="https://r2.community.samsung.com/t5/Galaxy-S/S24-Ultra-Overpriced/td-p/15489791"
+                                target="_blank" class="text-decoration-none text-success">Samsung Community Forum – S24
+                                Ultra Overpriced Discussion</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-journal-text text-success"></i>
+                            <a href="https://www.91mobiles.com/hub/iphone-16-pro-max-bom-production-cut/"
+                                target="_blank" class="text-decoration-none text-success">91Mobiles – iPhone 16 Pro Max
+                                BOM and Production Cut</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-globe text-success"></i>
+                            <a href="https://www.business-standard.com/technology/tech-news/iqoo-z10-with-7300-mah-battery-goes-on-sale-in-india-price-offers-more-125041600378_1.html"
+                                target="_blank" class="text-decoration-none text-success">Business Standard – iQOO Z10
+                                Launch & Battery Specs</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-phone-fill text-success"></i>
+                            <a href="https://www.gadgets360.com/redmi-a4-5g-price-in-india-128893" target="_blank"
+                                class="text-decoration-none text-success">Gadgets360 – Redmi A4 5G Price & Specs in
+                                India</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-bar-chart-line-fill text-success"></i>
+                            <a href="https://www.sammobile.com/news/galaxy-s24-ultra-world-best-selling-android-phone-q1-2024/"
+                                target="_blank" class="text-decoration-none text-success">SamMobile – Galaxy S24 Ultra
+                                Sales Report (Q1 2024)</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-newspaper text-success"></i>
+                            <a href="https://www.reuters.com/technology/apple-loses-top-phonemaker-spot-samsung-iphone-shipments-drop-idc-says-2024-04-15/"
+                                target="_blank" class="text-decoration-none text-success">Reuters – Apple Loses Top
+                                Phonemaker Spot to Samsung</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-phone text-success"></i>
+                            <a href="https://www.gadgets360.com/iqoo-z10-price-in-india-131595?utm_source=chatgpt.com"
+                                target="_blank" class="text-decoration-none text-success">Gadgets360 – iQOO Z10 Pricing
+                                in India</a>
+                        </li>
+                        <li class="list-group-item">
+                            <i class="bi bi-graph-up-arrow text-success"></i>
+                            <a href="https://www.phonearena.com/news/galaxy-s24-ultra-s23-ultra-eu-sales_id159739?utm_source=chatgpt.com"
+                                target="_blank" class="text-decoration-none text-success">PhoneArena – Galaxy S24 vs S23
+                                Ultra Sales in EU</a>
+                        </li>
                     </ul>
-                  </div>                  
+                </div>
             </div>
         </section>
 
